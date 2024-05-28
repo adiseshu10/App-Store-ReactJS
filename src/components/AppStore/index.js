@@ -292,29 +292,28 @@ const appsList = [
   },
 ]
 
+// Write your code here
 class AppStore extends Component {
-  state = {activeTabId: tabsList[0].appId, searchInput: ''}
+  state = {activeTabId: tabsList[0].tabId, searchInput: ''}
 
   getFilteredApps = () => {
     const {activeTabId} = this.state
     const filteredApps = appsList.filter(
-      eachItem => eachItem.category === activeTabId,
+      eachApp => eachApp.category === activeTabId,
     )
     return filteredApps
   }
 
   onChangeSearchInput = event => {
-    this.setState({activeTabId: event.target.value})
+    this.setState({searchInput: event.target.value})
   }
 
   getSearchResults = () => {
-    const {activeTabId, searchInput} = this.state
+    const {searchInput, activeTabId} = this.state
     const searchResults = appsList.filter(
-      eachApp =>
-        eachApp.appName
-          .toLocaleLowerCase()
-          .includes(searchInput.toLocaleLowerCase()) &&
-        eachApp.category === activeTabId,
+      eachItem =>
+        eachItem.appName.toLowerCase().includes(searchInput.toLowerCase()) &&
+        eachItem.category === activeTabId,
     )
     return searchResults
   }
@@ -336,7 +335,6 @@ class AppStore extends Component {
             type="search"
             className="search"
             onChange={this.onChangeSearchInput}
-            value={searchInput}
           />
           <img
             src="https://assets.ccbp.in/frontend/react-js/app-store/app-store-search-img.png"
