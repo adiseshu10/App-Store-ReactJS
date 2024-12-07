@@ -292,7 +292,6 @@ const appsList = [
   },
 ]
 
-// Write your code here
 class AppStore extends Component {
   state = {activeTabId: tabsList[0].tabId, searchInput: ''}
 
